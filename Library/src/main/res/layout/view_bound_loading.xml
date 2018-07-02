@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.prayxiang.support.common.vo.LoaderStatus" />
+        <variable
+            name="data"
+            type="com.prayxiang.support.common.vo.Loader" />
+    </data>
+
+    <LinearLayout xmlns:wheel="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:onClick="@{()->data.retry()}"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/load_default"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="@{data.status!=LoaderStatus.DEFAULT?View.GONE:View.VISIBLE}">
+
+            <TextView
+                android:id="@+id/load_default_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/multi_type_load_more"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="@{data.status!=LoaderStatus.ERROR?View.GONE:View.VISIBLE}">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/multi_type_load_fail"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="@{data.status!=LoaderStatus.GONE?View.GONE:View.VISIBLE}">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/multi_type_load_end"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="@{data.status!=LoaderStatus.SUCCESS?View.GONE:View.VISIBLE}">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/multi_type_load_success"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="@{data.status!=LoaderStatus.EMPTY?View.GONE:View.VISIBLE}">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/multi_type_empty"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/load_loading"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="@{data.status!=LoaderStatus.LOADING?View.GONE:View.VISIBLE}">
+
+            <com.prayxiang.support.common.widget.LoadingView
+                android:id="@+id/progressWheel"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                wheel:loading_view_size="12dp"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/load_loading_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:gravity="center"
+                android:text="@string/multi_type_loading"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
+
