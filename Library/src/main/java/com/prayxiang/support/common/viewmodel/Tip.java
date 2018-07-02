@@ -14,6 +14,7 @@ public final class Tip {
      * 显示信息图标
      */
     public static final int TYPE_INFO = 4;
+    public static final int TYPE_DISMISS = 5;
     public int type;
     public String message;
 

@@ -81,4 +81,8 @@ public class AppExecutors {
             mainThreadHandler.postDelayed(command, delay);
         }
     }
+
+    public boolean isMainThread() {
+        return Looper.getMainLooper().getThread() == Thread.currentThread();
+    }
 }

@@ -3,12 +3,12 @@ package com.prayxiang.support.common.demo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import com.prayxiang.support.common.activity.DataBoundActivity;
+import com.prayxiang.support.common.activity.SimpleActivity;
 import com.prayxiang.support.common.dialog.TipDialog;
 import com.prayxiang.support.common.viewmodel.DataBoundViewModel;
 import com.prayxiang.support.common.viewmodel.Tip;
 
-public class MainActivity extends DataBoundActivity {
+public class MainActivity extends SimpleActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,12 +18,12 @@ public class MainActivity extends DataBoundActivity {
 
         findViewById(R.id.click)
                 .setOnClickListener(view -> {
-                            viewModel.tip(Tip.TYPE_LOADING, "jiazo");
+                           getViewModel().tip(Tip.TYPE_LOADING, "jiazo");
 
                             view.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    viewModel.tip(Tip.TYPE_FAIL,"xxxxxx");
+                                    getViewModel().tip(Tip.TYPE_FAIL,"xxxxxx");
                                 }
                             },3000);
                         }

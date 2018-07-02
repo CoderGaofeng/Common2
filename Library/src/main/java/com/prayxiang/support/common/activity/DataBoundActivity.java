@@ -16,8 +16,12 @@ import com.prayxiang.support.common.viewmodel.Tip;
 public abstract class DataBoundActivity<T extends ViewDataBinding, ViewModel extends DataBoundViewModel> extends BaseActivity {
 
     public T binding;
-    public ViewModel viewModel;
+    private ViewModel viewModel;
 
+
+    public ViewModel getViewModel() {
+        return viewModel;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public abstract class DataBoundActivity<T extends ViewDataBinding, ViewModel ext
 
 
     protected ViewModel onCreateViewModel() {
-        Class<? extends ViewModel> cls = getViewModelClass();
+        Class< ViewModel> cls = getViewModelClass();
         return ViewModelProviders.of(this).get(cls);
     }
 
@@ -61,5 +65,5 @@ public abstract class DataBoundActivity<T extends ViewDataBinding, ViewModel ext
     int getLayoutId();
 
     public abstract @NonNull
-    Class<? extends ViewModel> getViewModelClass();
+    Class<ViewModel> getViewModelClass();
 }

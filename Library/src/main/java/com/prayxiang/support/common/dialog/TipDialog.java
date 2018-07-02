@@ -38,6 +38,8 @@ public class TipDialog extends android.app.Dialog {
             error(message);
         } else if (type == Tip.TYPE_INFO) {
             message(message);
+        } else if (type == Tip.TYPE_DISMISS) {
+            dismiss();
         }
     }
 

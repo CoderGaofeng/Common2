@@ -1,6 +1,7 @@
 package com.prayxiang.support.common.fragment;
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -19,7 +20,11 @@ import com.prayxiang.support.common.viewmodel.Tip;
 public abstract class DataBoundFragment<T extends ViewDataBinding,ViewModel extends DataBoundViewModel> extends BaseFragment {
 
     public T binding;
-    public ViewModel viewModel;
+    private ViewModel viewModel;
+
+    public ViewModel getViewModel() {
+        return viewModel;
+    }
 
     @Nullable
     @Override
@@ -34,7 +39,7 @@ public abstract class DataBoundFragment<T extends ViewDataBinding,ViewModel exte
             viewModel.obtainMessageEvent().observe(this, new Observer<String>() {
                 @Override
                 public void onChanged(@Nullable String s) {
-
+                    dispatchMessageEvent(s);
                 }
             });
             viewModel.obtainTipEvent().observe(this, new Observer<Tip>() {
@@ -49,16 +54,22 @@ public abstract class DataBoundFragment<T extends ViewDataBinding,ViewModel exte
         }
         return binding.getRoot();
     }
+    protected void dispatchMessageEvent(String message) {
+        if(getContext()!=null){
+            Toast.makeText(getContext(), message + "", Toast.LENGTH_SHORT).show();
+        }
 
+    }
 
     protected void dispatchTipEvent(int type, String message) {
         obtainDialog().dispatchTipEvent(type,message);
     }
     private ViewModel onCreateViewModel() {
-        return null;
-    }
+        Class< ViewModel> cls = getViewModelClass();
+        return ViewModelProviders.of(this).get(cls);}
 
 
-    public abstract @LayoutRes
-    int getLayoutId();
+    public abstract @LayoutRes int getLayoutId();
+
+    public abstract @NonNull Class<ViewModel> getViewModelClass();
 }

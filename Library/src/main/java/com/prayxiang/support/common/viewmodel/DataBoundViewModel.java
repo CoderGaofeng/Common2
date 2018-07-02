@@ -1,5 +1,6 @@
 package com.prayxiang.support.common.viewmodel;
 
+import android.arch.core.executor.ArchTaskExecutor;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.Bindable;
@@ -7,7 +8,9 @@ import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.PropertyChangeRegistry;
 import android.support.annotation.NonNull;
+import android.view.View;
 
+import com.prayxiang.support.common.AppExecutors;
 import com.prayxiang.support.common.LiveBus;
 import com.prayxiang.support.common.lifecycle.SingleLiveEvent;
 import com.prayxiang.support.common.vo.Resource;
@@ -43,10 +46,44 @@ public class DataBoundViewModel extends ViewModel implements RetryCallback, Obse
         tipEvent.postValue(new Tip(type, message));
     }
 
+
     public void message(String message) {
         messageEvent.postValue(message);
     }
 
+
+    public void success(String message) {
+        tip(Tip.TYPE_SUCCESS, message);
+    }
+
+    public void error(String message) {
+        tip(Tip.TYPE_FAIL, message);
+    }
+
+    public void loading(String message) {
+        tip(Tip.TYPE_LOADING, message);
+    }
+
+    public void loading() {
+        tip(Tip.TYPE_LOADING, null);
+    }
+
+    public void dismiss() {
+        assertMainThread("dismiss");
+
+        tipEvent.setValue(new Tip(Tip.TYPE_DISMISS, null));
+
+    }
+
+    protected static void assertMainThread(String methodName) {
+        if (!AppExecutors.get().isMainThread()) {
+            throw new IllegalStateException("Cannot invoke " + methodName + " on a background"
+                    + " thread");
+        }
+    }
+    public void postDismiss() {
+        tip(Tip.TYPE_DISMISS, null);
+    }
 
     @Override
     public void addOnPropertyChangedCallback(@NonNull Observable.OnPropertyChangedCallback callback) {
