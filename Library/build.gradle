@@ -3,7 +3,7 @@ apply plugin: 'maven'
 ext {
     PUBLISH_GROUP_ID = "com.prayxiang.support"
     PUBLISH_ARTIFACT_ID = "common"
-    PUBLISH_VERSION = "1.0.4"
+    PUBLISH_VERSION = "1.0.5"
 }
 
 uploadArchives {
@@ -40,8 +40,8 @@ android {
         }
     }
 
-    dataBinding{
-        enabled= true
+    dataBinding {
+        enabled = true
     }
     compileOptions {
         targetCompatibility 1.8
@@ -51,7 +51,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
     api 'com.github.bumptech.glide:glide:3.7.0'
     api 'com.prayxiang.support:recyclerview:1.0.0'
     api 'com.android.support:appcompat-v7:27.1.1'
@@ -66,4 +66,6 @@ dependencies {
     api "android.arch.lifecycle:reactivestreams:1.1.1"
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
     api 'org.greenrobot:eventbus:3.1.1'
+    api 'com.github.hackware1993:MagicIndicator:1.5.0'
+
 }

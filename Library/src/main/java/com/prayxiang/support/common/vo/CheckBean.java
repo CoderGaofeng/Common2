@@ -4,7 +4,7 @@ package com.prayxiang.support.common.vo;
  * Created by xianggaofeng on 2017/12/14.
  */
 
-public class CheckBean<T> extends BaseObservableObject {
+public class CheckBean<T> extends AndObject {
     private T object;
     private String title;
 

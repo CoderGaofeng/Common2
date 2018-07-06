@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.prayxiang.support.router.Utils;
+import com.prayxiang.support.router.WebClientActivity;
 
 /**
  * A route tool to open uri by browser
@@ -16,7 +17,7 @@ public class BrowserRoute implements IRoute {
 
     Uri uri;
 
-    private Class clz;
+    private Class clz = WebClientActivity.class;
     private static final BrowserRoute route = new BrowserRoute();
 
     public static BrowserRoute getInstance() {

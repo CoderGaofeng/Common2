@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.prayxiang.support.common.viewmodel.DataBoundViewModel;
 import com.prayxiang.support.common.viewmodel.Tip;
 
-public abstract class DataBoundFragment<T extends ViewDataBinding,ViewModel extends DataBoundViewModel> extends BaseFragment {
+public abstract class DataBoundFragment<T extends ViewDataBinding, ViewModel extends DataBoundViewModel> extends BaseFragment {
 
     public T binding;
     private ViewModel viewModel;
@@ -54,22 +54,25 @@ public abstract class DataBoundFragment<T extends ViewDataBinding,ViewModel exte
         }
         return binding.getRoot();
     }
+
     protected void dispatchMessageEvent(String message) {
-        if(getContext()!=null){
+        if (getContext() != null) {
             Toast.makeText(getContext(), message + "", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     protected void dispatchTipEvent(int type, String message) {
-        obtainDialog().dispatchTipEvent(type,message);
+        obtainDialog().dispatchTipEvent(type, message);
     }
+
     private ViewModel onCreateViewModel() {
-        Class< ViewModel> cls = getViewModelClass();
-        return ViewModelProviders.of(this).get(cls);}
+        Class<ViewModel> cls = getViewModelClass();
+        return ViewModelProviders.of(this).get(cls);
+    }
 
 
-    public abstract @LayoutRes int getLayoutId();
-
-    public abstract @NonNull Class<ViewModel> getViewModelClass();
+    public abstract @LayoutRes
+    int getLayoutId();
+    public abstract Class<ViewModel> getViewModelClass();
 }

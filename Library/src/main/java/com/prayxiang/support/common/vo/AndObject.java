@@ -2,20 +2,25 @@ package com.prayxiang.support.common.vo;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.text.TextUtils;
+import android.view.View;
 
 import com.prayxiang.support.common.BR;
+import com.prayxiang.support.router.Router;
 
 /**
  * Created by xianggaofeng on 2018/1/30.
  */
 
-public class BaseObservableObject extends BaseObservable {
+public class AndObject extends BaseObservable implements View.OnClickListener {
     private transient boolean selected = true;
     private transient boolean checked = true;
     private transient boolean focused = true;
     private transient boolean enabled = true;
     private transient boolean changed = false;
     private transient boolean refreshing = false;
+    private transient String routerUri;
+
 
     @Bindable
     public boolean isRefreshing() {
@@ -76,5 +81,22 @@ public class BaseObservableObject extends BaseObservable {
     public void setSelected(boolean selected) {
         this.selected = selected;
         notifyPropertyChanged(BR.selected);
+    }
+
+
+    public String getRouterUri() {
+        return routerUri;
+    }
+
+    public void setRouterUri(String routerUri) {
+        this.routerUri = routerUri;
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        if (TextUtils.isEmpty(routerUri)) {
+            Router.create(routerUri).open(v.getContext());
+        }
     }
 }

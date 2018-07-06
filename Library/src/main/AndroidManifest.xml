@@ -6,5 +6,9 @@
             android:name="com.prayxiang.support.permission.PermissionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/permission_PermissionActivity" />
+        <activity android:name="com.prayxiang.support.router.WebClientActivity" />
+        <activity android:name="com.prayxiang.support.photo.DragPhotoActivity"
+            android:theme="@style/TransparentTheme"
+            />
     </application>
 </manifest>

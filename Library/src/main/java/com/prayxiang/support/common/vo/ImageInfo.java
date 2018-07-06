@@ -4,7 +4,7 @@ package com.prayxiang.support.common.vo;
  * Created by xianggaofeng on 2018/1/30.
  */
 
-public class ImageInfo extends BaseObservableObject {
+public class ImageInfo extends AndObject {
     public int width = -2;
     public int height = -2;
 

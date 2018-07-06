@@ -1,4 +1,4 @@
-package com.prayxiang.support.common.widget;
+package com.prayxiang.support.common.widget.popup;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -17,9 +17,7 @@ import com.prayxiang.support.common.R;
 
 import java.lang.ref.WeakReference;
 
-/**
- * @author BakerJ
- */
+
 public class BackgroundDarkPopupWindow extends PopupWindow {
 
     private View mDarkView;

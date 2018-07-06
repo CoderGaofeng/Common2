@@ -24,7 +24,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 
 import com.prayxiang.support.common.AppExecutors;
-import com.prayxiang.support.common.vo.ApiResponse;
+import com.prayxiang.support.common.vo.AndResponse;
 import com.prayxiang.support.common.vo.Resource;
 
 
@@ -64,7 +64,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     }
 
     private void fetchFromNetwork(final LiveData<ResultType> dbSource) {
-        LiveData<ApiResponse<RequestType>> apiResponse = createCall();
+        LiveData<AndResponse<RequestType>> apiResponse = createCall();
         // we re-attach dbSource as a new source, it will dispatch its latest value quickly
         result.addSource(dbSource, newData -> setValue(Resource.loading(newData)));
         result.addSource(apiResponse, response -> {
@@ -98,7 +98,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     }
 
     @WorkerThread
-    protected RequestType processResponse(ApiResponse<RequestType> response) {
+    protected RequestType processResponse(AndResponse<RequestType> response) {
         return response.body;
     }
 
@@ -114,5 +114,5 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
 
     @NonNull
     @MainThread
-    protected abstract LiveData<ApiResponse<RequestType>> createCall();
+    protected abstract LiveData<AndResponse<RequestType>> createCall();
 }

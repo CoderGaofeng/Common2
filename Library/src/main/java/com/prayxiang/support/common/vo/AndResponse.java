@@ -40,7 +40,7 @@ import retrofit2.Response;
  *
  * @param <T>
  */
-public class ApiResponse<T> {
+public class AndResponse<T> {
     private static final Pattern LINK_PATTERN = Pattern
             .compile("<([^>]*)>[\\s]*;[\\s]*rel=\"([a-zA-Z0-9]+)\"");
     private static final Pattern PAGE_PATTERN = Pattern.compile("\\bpage=(\\d+)");
@@ -53,7 +53,7 @@ public class ApiResponse<T> {
     @NonNull
     public final Map<String, String> links;
 
-    public ApiResponse(Throwable error) {
+    public AndResponse(Throwable error) {
         code = 500;
         body = null;
         if (error instanceof ConnectException) {
@@ -69,7 +69,7 @@ public class ApiResponse<T> {
         links = Collections.emptyMap();
     }
 
-    public ApiResponse(Response<T> response) {
+    public AndResponse(Response<T> response) {
         code = response.code();
         if (response.isSuccessful()) {
             body = response.body();
@@ -120,20 +120,5 @@ public class ApiResponse<T> {
         return code >= 200 && code < 300;
     }
 
-    public Integer getNextPage() {
-        String next = links.get(NEXT_LINK);
-        if (next == null) {
-            return null;
-        }
-        Matcher matcher = PAGE_PATTERN.matcher(next);
-        if (!matcher.find() || matcher.groupCount() != 1) {
-            return null;
-        }
-        try {
-            return Integer.parseInt(matcher.group(1));
-        } catch (NumberFormatException ex) {
-//            Timber.w("cannot parse next page from %s", next);
-            return null;
-        }
-    }
+
 }
