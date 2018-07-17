@@ -12,6 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
         app:navigationIcon="@drawable/ic_common_back">
 
         <TextView
@@ -20,6 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:text="@string/close"
+
+            android:textColor="@color/common_white"
             android:visibility="gone" />
 
 
@@ -29,10 +32,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
+            android:gravity="center"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/loading"
-            android:textColor="?attr/titleTextColor"
+            android:textColor="@color/common_white"
             android:textSize="18sp" />
 
     </android.support.v7.widget.Toolbar>

@@ -44,7 +44,7 @@ public class WebClientActivity extends BaseActivity {
     private String uri;
     private int backCount;
     private TextView close;
-    private ImageView back;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,23 +88,7 @@ public class WebClientActivity extends BaseActivity {
         close.setOnClickListener(v -> finish());
         close.setVisibility(View.GONE);
 
-        back.setOnClickListener(v -> {
-            if (webView.canGoBack()) {
-                backCount++;
-                if (backCount >= 2) {
-                    close.setVisibility(View.VISIBLE);
-                }
-                webView.goBack();
-                return;
-            }
-            FragmentManager fm = getSupportFragmentManager();
-            if ((fm != null && fm.getBackStackEntryCount() > 0)) {
 
-                fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            } else {
-                finish();
-            }
-        });
 
     }
 
@@ -206,7 +190,7 @@ public class WebClientActivity extends BaseActivity {
         super.onResume();
         WebSettings webSettings = webView.getSettings();
 //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
-        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptEnabled(false);
     }
 
     @Override

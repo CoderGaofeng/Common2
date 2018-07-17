@@ -105,6 +105,7 @@ public class TipDialog extends android.app.Dialog {
         if (window == null) {
             return;
         }
+        window.getDecorView().removeCallbacks(mDismissDaemon);
         window.getDecorView().postDelayed(mDismissDaemon, delayMillis);
 
     }

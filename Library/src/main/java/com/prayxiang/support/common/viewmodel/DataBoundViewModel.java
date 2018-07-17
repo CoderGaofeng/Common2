@@ -43,14 +43,21 @@ public class DataBoundViewModel extends ViewModel implements RetryCallback, Obse
     }
 
     public void tip(int type, String message) {
-        tipEvent.postValue(new Tip(type, message));
+        tipEvent.setValue(new Tip(type, message));
     }
 
+    public void postTip(int type, String message) {
+        tipEvent.postValue(new Tip(type, message));
+    }
 
     public void message(String message) {
         messageEvent.postValue(message);
     }
 
+
+    public void postSuccess(String message) {
+        postTip(Tip.TYPE_SUCCESS, message);
+    }
 
     public void success(String message) {
         tip(Tip.TYPE_SUCCESS, message);
@@ -60,8 +67,17 @@ public class DataBoundViewModel extends ViewModel implements RetryCallback, Obse
         tip(Tip.TYPE_FAIL, message);
     }
 
+    public void postError(String message) {
+        postTip(Tip.TYPE_FAIL, message);
+    }
+
+
     public void loading(String message) {
         tip(Tip.TYPE_LOADING, message);
+    }
+
+    public void postLoading(String message) {
+        postTip(Tip.TYPE_LOADING, message);
     }
 
     public void loading() {
@@ -81,6 +97,7 @@ public class DataBoundViewModel extends ViewModel implements RetryCallback, Obse
                     + " thread");
         }
     }
+
     public void postDismiss() {
         tip(Tip.TYPE_DISMISS, null);
     }

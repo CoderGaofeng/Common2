@@ -17,9 +17,14 @@ public abstract class SimpleActivity<T extends ViewDataBinding> extends DataBoun
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, getLayoutId());
+
     }
 
+    @Override
+    protected void dispatchActivityCreated(@Nullable Bundle savedInstanceState) {
+        binding = DataBindingUtil.setContentView(this, getLayoutId());
+        super.dispatchActivityCreated(savedInstanceState);
+    }
 
     public abstract @LayoutRes
     int getLayoutId();

@@ -11,6 +11,7 @@ import com.prayxiang.support.common.dialog.TipDialog;
 import com.prayxiang.support.common.viewmodel.DataBoundViewModel;
 import com.prayxiang.support.photo.AndPhoto;
 import com.prayxiang.support.photo.ImageInfo;
+import com.prayxiang.support.router.Router;
 
 import java.util.Arrays;
 
@@ -46,9 +47,10 @@ public class MainActivity extends SimpleActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                   AndPhoto.with(info2)
-                           .group(Arrays.asList(info,info2,info3))
-                           .open((ImageView) view);
+//                   AndPhoto.with(info2)
+//                           .group(Arrays.asList(info,info2,info3))
+//                           .open((ImageView) view);
+                Router.create("www.baidu.com").open(view.getContext());
             }
         });
 

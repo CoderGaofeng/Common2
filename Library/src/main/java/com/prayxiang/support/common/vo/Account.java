@@ -71,7 +71,7 @@ public class Account<T extends AndUser> extends AndObject {
         eventBus.postValue(runnable);
     }
 
-    public Account get() {
+    public static Account get() {
         return account;
     }
 

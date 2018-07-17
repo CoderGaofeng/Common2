@@ -45,7 +45,17 @@ public abstract class DataBoundActivity<T extends ViewDataBinding, ViewModel ext
                 }
             });
         }
+
+        dispatchActivityCreated(savedInstanceState);
     }
+
+    protected void dispatchActivityCreated(@Nullable Bundle savedInstanceState) {
+        onActivityCreated(savedInstanceState);
+    }
+
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    }
+
 
     protected void dispatchMessageEvent(String message) {
         Toast.makeText(this, message + "", Toast.LENGTH_SHORT).show();
@@ -57,7 +67,7 @@ public abstract class DataBoundActivity<T extends ViewDataBinding, ViewModel ext
 
 
     protected ViewModel onCreateViewModel() {
-        Class< ViewModel> cls = getViewModelClass();
+        Class<ViewModel> cls = getViewModelClass();
         return ViewModelProviders.of(this).get(cls);
     }
 
