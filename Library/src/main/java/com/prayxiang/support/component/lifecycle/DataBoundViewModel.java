@@ -1,23 +1,18 @@
-package com.prayxiang.support.common.viewmodel;
+package com.prayxiang.support.component.lifecycle;
 
-import android.arch.core.executor.ArchTaskExecutor;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.Bindable;
 import android.databinding.Observable;
-import android.databinding.ObservableBoolean;
 import android.databinding.PropertyChangeRegistry;
 import android.support.annotation.NonNull;
-import android.view.View;
 
 import com.prayxiang.support.common.AppExecutors;
-import com.prayxiang.support.common.LiveBus;
-import com.prayxiang.support.common.lifecycle.SingleLiveEvent;
+import com.prayxiang.support.component.lifecycle.SingleLiveEvent;
 import com.prayxiang.support.common.vo.Resource;
 import com.prayxiang.support.common.vo.RetryCallback;
 import com.prayxiang.support.common.vo.Status;
 import com.prayxiang.support.common.BR;
-import com.prayxiang.support.common.recyclerview.LoadListener;
 
 /**
  * Created by xianggaofeng on 2018/1/30.

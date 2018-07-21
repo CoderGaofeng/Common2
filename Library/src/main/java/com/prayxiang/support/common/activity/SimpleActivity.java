@@ -7,7 +7,8 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.prayxiang.support.common.viewmodel.DataBoundViewModel;
+import com.prayxiang.support.component.lifecycle.DataBoundViewModel;
+
 
 public abstract class SimpleActivity<T extends ViewDataBinding> extends DataBoundActivity<T, DataBoundViewModel> {
 

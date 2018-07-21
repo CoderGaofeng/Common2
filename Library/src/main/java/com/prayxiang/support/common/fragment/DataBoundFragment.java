@@ -8,14 +8,13 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.prayxiang.support.common.viewmodel.DataBoundViewModel;
-import com.prayxiang.support.common.viewmodel.Tip;
+import com.prayxiang.support.component.lifecycle.DataBoundViewModel;
+import com.prayxiang.support.component.lifecycle.Tip;
 
 public abstract class DataBoundFragment<T extends ViewDataBinding, ViewModel extends DataBoundViewModel> extends BaseFragment {
 
@@ -74,5 +73,6 @@ public abstract class DataBoundFragment<T extends ViewDataBinding, ViewModel ext
 
     public abstract @LayoutRes
     int getLayoutId();
+
     public abstract Class<ViewModel> getViewModelClass();
 }

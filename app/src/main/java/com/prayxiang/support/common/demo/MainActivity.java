@@ -9,11 +9,9 @@ import com.bumptech.glide.Glide;
 import com.prayxiang.support.common.activity.SimpleActivity;
 import com.prayxiang.support.common.dialog.TipDialog;
 import com.prayxiang.support.common.viewmodel.DataBoundViewModel;
-import com.prayxiang.support.photo.AndPhoto;
+import com.prayxiang.support.common.viewmodel.Tip;
 import com.prayxiang.support.photo.ImageInfo;
 import com.prayxiang.support.router.Router;
-
-import java.util.Arrays;
 
 public class MainActivity extends SimpleActivity {
 
@@ -23,19 +21,19 @@ public class MainActivity extends SimpleActivity {
         setContentView(R.layout.activity_main);
         TipDialog dialog = new TipDialog(this);
 
-//        findViewById(R.id.click)
-//                .setOnClickListener(view -> {
-//                           getViewModel().tip(Tip.TYPE_LOADING, "jiazo");
-//
-//                            view.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    getViewModel().tip(Tip.TYPE_FAIL,"xxxxxx");
-//
-//                                }
-//                            },3000);
-//                        }
-//                );
+        findViewById(R.id.click)
+                .setOnClickListener(view -> {
+                           getViewModel().loading( "jiazo");
+
+                            view.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    getViewModel().error("sdfds");
+
+                                }
+                            },3000);
+                        }
+                );
 
         ImageView imageView = findViewById(R.id.test);
         ImageInfo info = new ImageInfo("http://img.zcool.cn/community/0142135541fe180000019ae9b8cf86.jpg@1280w_1l_2o_100sh.png");

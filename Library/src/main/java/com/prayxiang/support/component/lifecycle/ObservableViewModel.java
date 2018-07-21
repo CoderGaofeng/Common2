@@ -1,4 +1,4 @@
-package com.prayxiang.support.common.viewmodel;
+package com.prayxiang.support.component.lifecycle;
 
 import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;

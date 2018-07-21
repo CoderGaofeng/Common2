@@ -1,7 +1,5 @@
-package com.prayxiang.support.common;
+package com.prayxiang.support.component;
 
-
-import com.prayxiang.support.common.lifecycle.SingleLiveEvent;
 
 import org.greenrobot.eventbus.EventBus;
 

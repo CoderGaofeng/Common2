@@ -1,4 +1,4 @@
-package com.prayxiang.support.common.viewmodel;
+package com.prayxiang.support.component.lifecycle;
 
 public final class Tip {
     public static final int TYPE_LOADING = 1;

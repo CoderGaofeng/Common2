@@ -13,7 +13,7 @@ public class ResponseBody<T> {
     }
 
     public boolean isSuccessful() {
-        return code == 0;
+        return code == 0||code==200;
     }
 
     public T body() {

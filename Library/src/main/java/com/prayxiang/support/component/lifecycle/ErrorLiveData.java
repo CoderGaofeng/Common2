@@ -1,4 +1,4 @@
-package com.prayxiang.support.common.lifecycle;
+package com.prayxiang.support.component.lifecycle;
 
 import android.arch.lifecycle.LiveData;
 

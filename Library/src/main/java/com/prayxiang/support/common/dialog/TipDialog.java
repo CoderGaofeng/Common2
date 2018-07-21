@@ -9,8 +9,8 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.prayxiang.support.common.R;
-import com.prayxiang.support.common.viewmodel.Tip;
 import com.prayxiang.support.common.widget.LoadingView;
+import com.prayxiang.support.component.lifecycle.Tip;
 
 public class TipDialog extends android.app.Dialog {
 
@@ -31,7 +31,7 @@ public class TipDialog extends android.app.Dialog {
 
     public void dispatchTipEvent(int type, String message) {
         if (type == Tip.TYPE_LOADING) {
-            show(message);
+            loading(message);
         } else if (type == Tip.TYPE_SUCCESS) {
             success(message);
         } else if (type == Tip.TYPE_FAIL) {
@@ -112,13 +112,10 @@ public class TipDialog extends android.app.Dialog {
 
     @Override
     public void show() {
-        loadingView.setVisibility(View.VISIBLE);
-        iconView.setVisibility(View.GONE);
-        this.contentView.setVisibility(View.GONE);
         super.show();
     }
 
-    public void show(String message) {
+    public void loading(String message) {
         loadingView.setVisibility(View.VISIBLE);
         iconView.setVisibility(View.GONE);
 
@@ -128,7 +125,10 @@ public class TipDialog extends android.app.Dialog {
             this.contentView.setVisibility(View.VISIBLE);
             this.contentView.setText(message);
         }
-        super.show();
+        if(!isShowing()){
+            super.show();
+        }
+
     }
 
     public void success(String message) {

@@ -17,6 +17,7 @@
 package com.prayxiang.support.common;
 
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 
@@ -41,19 +42,21 @@ public class AppExecutors {
     private final Executor diskIO;
 
     private final Executor networkIO;
+    private final DispatchThreadExecutor dispatchThread;
 
     private final MainThreadExecutor mainThread;
 
-    public AppExecutors(Executor diskIO, Executor networkIO, Executor mainThread) {
+    public AppExecutors(Executor diskIO, Executor networkIO, Executor mainThread, Executor dispatchThread) {
         this.diskIO = diskIO;
         this.networkIO = networkIO;
         this.mainThread = (MainThreadExecutor) mainThread;
+        this.dispatchThread = (DispatchThreadExecutor) dispatchThread;
     }
 
 
     public AppExecutors() {
         this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(3),
-                new MainThreadExecutor());
+                new MainThreadExecutor(), new DispatchThreadExecutor());
     }
 
     public Executor diskIO() {
@@ -67,6 +70,9 @@ public class AppExecutors {
     public MainThreadExecutor mainThread() {
         return mainThread;
     }
+    public DispatchThreadExecutor dispatchThread() {
+        return dispatchThread;
+    }
 
     public static class MainThreadExecutor implements Executor {
         private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
@@ -79,6 +85,25 @@ public class AppExecutors {
 
         public void execute(@NonNull Runnable command, long delay) {
             mainThreadHandler.postDelayed(command, delay);
+        }
+    }
+
+    public static class DispatchThreadExecutor implements Executor {
+        private HandlerThread dispatchThread = new HandlerThread("dispatch");
+        private Handler dispatchThreadHandler = new Handler(dispatchThread.getLooper());
+
+        public DispatchThreadExecutor() {
+            dispatchThread.start();
+        }
+
+        @Override
+        public void execute(@NonNull Runnable command) {
+            dispatchThreadHandler.post(command);
+        }
+
+
+        public void execute(@NonNull Runnable command, long delay) {
+            dispatchThreadHandler.postDelayed(command, delay);
         }
     }
 
