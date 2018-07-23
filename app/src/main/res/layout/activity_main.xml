@@ -24,6 +24,6 @@
         android:layout_marginLeft="200dp"
         android:layout_width="50dp"
         android:layout_height="100dp"
-        android:src="@drawable/wugeng"
+
         />
 </FrameLayout>

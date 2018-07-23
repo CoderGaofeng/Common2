@@ -27,6 +27,7 @@ public abstract class RecyclerViewModel<Body, V> extends ObservableViewModel<Bod
 
 
     private int currentPage;
+
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
     }
@@ -34,6 +35,7 @@ public abstract class RecyclerViewModel<Body, V> extends ObservableViewModel<Bod
     public int getCurrentPage() {
         return currentPage;
     }
+
     private ObservableList items;
     private LastLoader lastLoader = new LastLoader();
     private FirstLoader firstLoader = new FirstLoader(this);
@@ -238,18 +240,14 @@ public abstract class RecyclerViewModel<Body, V> extends ObservableViewModel<Bod
 
     }
 
-    public void onBindItemDecoration(RecyclerView recyclerView) {
+    protected void onBindRecyclerView(RecyclerView recyclerView) {
 
     }
 
-    public void onBindLayoutManager(RecyclerView recyclerView) {
-
-    }
 
     @Override
     public void onBind(RecyclerView recyclerView) {
         recyclerView.setAdapter(getAdapter());
-        onBindLayoutManager(recyclerView);
-        onBindItemDecoration(recyclerView);
+        onBindRecyclerView(recyclerView);
     }
 }

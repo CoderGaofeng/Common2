@@ -8,8 +8,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.prayxiang.support.common.activity.SimpleActivity;
 import com.prayxiang.support.common.dialog.TipDialog;
-import com.prayxiang.support.common.viewmodel.DataBoundViewModel;
-import com.prayxiang.support.common.viewmodel.Tip;
+import com.prayxiang.support.component.lifecycle.DataBoundViewModel;
 import com.prayxiang.support.photo.ImageInfo;
 import com.prayxiang.support.router.Router;
 

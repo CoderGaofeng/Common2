@@ -3,7 +3,7 @@ apply plugin: 'maven'
 ext {
     PUBLISH_GROUP_ID = "com.prayxiang.support"
     PUBLISH_ARTIFACT_ID = "common"
-    PUBLISH_VERSION = "1.1.3"
+    PUBLISH_VERSION = "1.1.4"
 }
 
 uploadArchives {
@@ -63,7 +63,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
     api 'com.github.bumptech.glide:glide:3.7.0'
-    api 'com.prayxiang.support:recyclerview:1.0.0'
+    api 'com.prayxiang.support:recyclerview:1.0.1'
     api 'com.android.support:appcompat-v7:27.1.1'
     api 'com.android.support:recyclerview-v7:27.1.1'
     api "com.google.code.gson:gson:2.8.2"
@@ -75,5 +75,6 @@ dependencies {
     api "com.android.support:exifinterface:27.1.1"
     api 'org.greenrobot:eventbus:3.1.1'
     api 'com.github.hackware1993:MagicIndicator:1.5.0'
+    api 'com.jakewharton.timber:timber:4.7.1'
 
 }
