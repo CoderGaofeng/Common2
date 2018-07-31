@@ -1,6 +1,6 @@
 package com.prayxiang.support.common.vo;
 
-public class ResponseBody<T> {
+public class ResponseBody<T> implements ResponseState {
     public int code;
 
     public T data;
@@ -13,7 +13,12 @@ public class ResponseBody<T> {
     }
 
     public boolean isSuccessful() {
-        return code == 0||code==200;
+        return code == 0 || code == 200;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
     }
 
     public T body() {

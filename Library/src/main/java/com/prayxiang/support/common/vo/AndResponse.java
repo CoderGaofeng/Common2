@@ -19,6 +19,7 @@ package com.prayxiang.support.common.vo;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.util.ArrayMap;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.apache.http.conn.ConnectTimeoutException;
@@ -40,7 +41,7 @@ import retrofit2.Response;
  *
  * @param <T>
  */
-public class AndResponse<T> {
+public class AndResponse<T> implements ResponseState {
     private static final Pattern LINK_PATTERN = Pattern
             .compile("<([^>]*)>[\\s]*;[\\s]*rel=\"([a-zA-Z0-9]+)\"");
     private static final Pattern PAGE_PATTERN = Pattern.compile("\\bpage=(\\d+)");
@@ -116,8 +117,32 @@ public class AndResponse<T> {
                 '}';
     }
 
+    @Override
     public boolean isSuccessful() {
-        return code >= 200 && code < 300;
+        boolean result = true;
+        if (body == null) {
+            result = false;
+        } else if (body instanceof ResponseState) {
+            result = ((ResponseState) body).isSuccessful();
+        }
+        return code >= 200 && code < 300 && result;
+    }
+
+    @Override
+    public String getMessage() {
+        String result = "";
+        if (body == null) {
+
+        } else if (body instanceof ResponseState) {
+            String tmp = ((ResponseState) body).getMessage();
+            if (!TextUtils.isEmpty(tmp)) {
+                result += tmp;
+            }
+        }
+        if (errorMessage != null) {
+            result += errorMessage;
+        }
+        return result;
     }
 
 

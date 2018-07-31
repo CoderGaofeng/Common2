@@ -9,10 +9,10 @@ import android.support.annotation.Nullable;
 
 import com.prayxiang.support.common.vo.Resource;
 
-public abstract class ObservableViewModel<Body, V> extends DataBoundViewModel {
+public abstract class ObservableViewModel<Param, V> extends DataBoundViewModel {
 
 
-    private MutableLiveData<Body> liveData = new MutableLiveData<>();
+    private MutableLiveData<Param> liveData = new MutableLiveData<>();
 
     private LiveData<Resource<V>> result;
 
@@ -22,12 +22,12 @@ public abstract class ObservableViewModel<Body, V> extends DataBoundViewModel {
     }
 
 
-    private Body params;
+    private Param params;
 
     public ObservableViewModel() {
-        result = Transformations.switchMap(liveData, new Function<Body, LiveData<Resource<V>>>() {
+        result = Transformations.switchMap(liveData, new Function<Param, LiveData<Resource<V>>>() {
             @Override
-            public LiveData<Resource<V>> apply(Body input) {
+            public LiveData<Resource<V>> apply(Param input) {
                 return onCreateRequestLiveData(input);
             }
         });
@@ -41,7 +41,7 @@ public abstract class ObservableViewModel<Body, V> extends DataBoundViewModel {
 
     }
 
-    public abstract LiveData<Resource<V>> onCreateRequestLiveData(Body param);
+    public abstract LiveData<Resource<V>> onCreateRequestLiveData(Param param);
 
     public abstract void onChange(Resource<V> resource);
 
@@ -52,11 +52,11 @@ public abstract class ObservableViewModel<Body, V> extends DataBoundViewModel {
     }
 
 
-    public void setParams(Body params) {
+    public void setParams(Param params) {
         this.params = params;
     }
 
-    public Body getParams() {
+    public Param getParams() {
         return params;
     }
 
@@ -64,7 +64,7 @@ public abstract class ObservableViewModel<Body, V> extends DataBoundViewModel {
         liveData.setValue(getParams());
     }
 
-    public void notifyParamChanged(Body params) {
+    public void notifyParamChanged(Param params) {
         setParams(params);
         notifyParamChanged();
     }

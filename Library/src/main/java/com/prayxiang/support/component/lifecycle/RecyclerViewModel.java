@@ -5,9 +5,12 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.Transformations;
+import android.arch.paging.PagedList;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 
+import com.prayxiang.support.common.AppExecutors;
 import com.prayxiang.support.common.vo.FirstLoader;
 import com.prayxiang.support.common.vo.LastLoader;
 import com.prayxiang.support.common.vo.Resource;
@@ -18,6 +21,7 @@ import com.prayxiang.support.recyclerview.ObservableList;
 import com.prayxiang.support.common.recyclerview.LoadListener;
 import com.prayxiang.support.common.recyclerview.LoadMoreScrollListener;
 import com.prayxiang.support.common.recyclerview.RecyclerViewBinder;
+import com.prayxiang.support.recyclerview.PagingRequestHelper;
 
 import java.util.Collections;
 import java.util.List;
@@ -200,7 +204,7 @@ public abstract class RecyclerViewModel<Body, V> extends ObservableViewModel<Bod
     public void retry() {
         setCurrentPage(0);
         loadPage(0);
-        notifyParamChanged();
+        super.retry();
     }
 
     public void loadPage(int page) {
@@ -250,4 +254,7 @@ public abstract class RecyclerViewModel<Body, V> extends ObservableViewModel<Bod
         recyclerView.setAdapter(getAdapter());
         onBindRecyclerView(recyclerView);
     }
+
+
+
 }
